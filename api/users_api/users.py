@@ -56,7 +56,7 @@ def register_user(user_model: User):
             reg_user = register_user_db(**user_data)
             return {"status": 1, "user_id": reg_user}
         except Exception as e:
-            return {"status":0, "message": e}
+            return {"status":0, "message":  e}
     return {"status":0, "message": "Invalid email"}
 
 

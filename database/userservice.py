@@ -13,7 +13,7 @@ def register_user_db(username, email, password, phone_number, user_city):
                     user_city=user_city, reg_date=datetime.now())
     db.add(new_user)
     db.commit()
-    return new_user.id
+    return new_user.idd
 
 
 # проверка на наличие юзера в бд
