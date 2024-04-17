@@ -45,7 +45,7 @@ def profile_info_db(user_id):
     all_info = db.query(User).filter_by(id=user_id).first()
     if all_info:
         return (all_info.email, all_info.phone_number,
-                all_info.name, all_info.user_city, all_info.reg_date)
+                all_info.username, all_info.user_city, all_info.reg_date)
     return 'Пользователь не найден'
 
 
@@ -69,12 +69,12 @@ def change_user_data(user_id, changeable_info, new_data):
     return "Пользователь не найден"
 
 
-def login_user_db(username, password):
+def login_user_db(email, password):
     db = next(get_db())
-    login = db.query(User).filter_by(username=username, password=password).first()
+    login = db.query(User).filter_by(email=email, password=password).first()
     if login:
         token_data = {"user_id": login.id}
         access_token_data = create_access_token(token_data)
         return {"access_token": access_token_data, "token_type": "Bearer", "status": "Success"}
     else:
-        return 'Неверный номер телефона или пароль'
+        return 'Неверный мейл или пароль'
